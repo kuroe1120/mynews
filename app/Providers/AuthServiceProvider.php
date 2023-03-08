@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Routing\UrlGenerator;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,10 +22,10 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    
+    public function boot(UrlGenerator $url) // 引数追加
     {
-        $this->registerPolicies();
-
-        //
+      $this->registerPolicies();
+      $url->forceScheme('https'); // 追加
     }
 }
